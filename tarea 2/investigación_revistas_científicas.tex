@@ -1,0 +1,162 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Define Article %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Using Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[margin = 1 in ]{geometry}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{empheq}
+\usepackage{mdframed}
+\usepackage{booktabs}
+\usepackage{lipsum}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{psfrag}
+\usepackage{pgfplots}
+\usepackage{bm}
+\usepackage[spanish]{babel}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=red,
+    pdftitle={How to write a thesis},
+    }
+\usepackage{fancyvrb}
+\usepackage{fancyhdr, lastpage}
+\pagestyle{fancy}
+\lhead{Universidad Autónoma de Nuevo León}
+\rhead{Investigación de revistas}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Other Settings
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Page Setting %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\geometry{a4paper}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Define some useful colors %%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{ocre}{RGB}{243,102,25}
+\definecolor{mygray}{RGB}{243,243,244}
+\definecolor{deepGreen}{RGB}{26,111,0}
+\definecolor{shallowGreen}{RGB}{235,255,255}
+\definecolor{deepBlue}{RGB}{61,124,222}
+\definecolor{shallowBlue}{RGB}{235,249,255}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Define an orangebox command %%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\orangebox[1]{\fcolorbox{ocre}{mygray}{\hspace{1em}#1\hspace{1em}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% English Environments %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheoremstyle{mytheoremstyle}{3pt}{3pt}{\normalfont}{0cm}{\rmfamily\bfseries}{}{1em}{{\color{black}\thmname{#1}~\thmnumber{#2}}\thmnote{\,--\,#3}}
+\newtheoremstyle{myproblemstyle}{3pt}{3pt}{\normalfont}{0cm}{\rmfamily\bfseries}{}{1em}{{\color{black}\thmname{#1}~\thmnumber{#2}}\thmnote{\,--\,#3}}
+\theoremstyle{mytheoremstyle}
+\newmdtheoremenv[linewidth=1pt,backgroundcolor=shallowGreen,linecolor=deepGreen,leftmargin=0pt,innerleftmargin=20pt,innerrightmargin=20pt,]{theorem}{Theorem}[section]
+\theoremstyle{mytheoremstyle}
+\newmdtheoremenv[linewidth=1pt,backgroundcolor=shallowBlue,linecolor=deepBlue,leftmargin=0pt,innerleftmargin=20pt,innerrightmargin=20pt,]{definition}{Definition}[section]
+\theoremstyle{myproblemstyle}
+\newmdtheoremenv[linecolor=black,leftmargin=0pt,innerleftmargin=10pt,innerrightmargin=10pt,]{problem}{Problem}[section]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Plotting Settings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepgfplotslibrary{colorbrewer}
+\pgfplotsset{width=8cm,compat=1.9}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Title & Author %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Tarea 2}
+\author{Investigación de la metodología en revistas}
+\bibliographystyle{unsrtnat}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+    \maketitle
+    \thispagestyle{empty}
+
+    \newpage
+    \section*{MHsalud}
+    La primera de nuestras referencias es: \cite{mhsalud} la cual pueden visitar en la página: 
+    \href{https://www.revistas.una.ac.cr/index.php/mhsalud}{MHsalud}.
+    \newline
+    Esta revista está orientada a la medicina, una de las características principales que me 
+    llamaron la atención fue el hecho que entre los formatos que piden para entregar no viene 
+    admitido pdf ni archivos tipo tex. 
+    \\ Respecto a la estructura del manuscrito la letra se pide tipo Times New Roman, tamaño 12 
+    interlineado sencillo entre otros detalles.
+    \\ En la primera página se deben de integrar título del artículo (centrado, en mayúscula y 
+    negrita). Debajo aparecerán los nombres y apellidos de los autores, grado académico, la 
+    institución en la que elaboro la obra (lugar de afiliación) y el correo electrónico del 
+    autor principal. 
+    \\ Después se detallan de manera general la forma en que se deben de escribir las notas de
+    pie (solo de ser necesarias) y se da una idea fundamental de la estructura del manuscrito.
+    \\ En caso de ser un artículo se da una detallada explicación de cada sección, siendo 
+    el primero {\bfseries Introducción, Metodología, Resultados, Discusión y Conclusiones}, cada uno de estos
+    es detallado, pero nos interesa ver el apartado de Metodología.
+    \\ En este último  mencionado, se detalla el uso de cuatro secciones:
+    \begin{enumerate}
+        \item Participantes.
+        \item Instrumentos.
+        \item Procedimiento.
+        \item Análisis estadístico.
+    \end{enumerate}
+    El apartado que más me dio interés fue el de participantes, ya que repite el hecho que si se usan personas o 
+    animales se debe de establecer las normas éticas seguidas o el mencionar el comité ético que aprobó dicho 
+    experimento. \footnote{Como nota, es importa recordar que es una revista médica}
+    \section*{Nature}
+    Para nuestra siguiente referencia utilizaremos \cite{nature} la cual se puede visitar en el siguiente link: 
+    \href{https://www.nature.com/nature/for-authors/formatting-guide}{Nature}.
+    \\ En esta revista un detalle en el apartado de Métodos es la petición de no debe incluir figuras ni tablas, 
+    estas mismas deben ser adjuntadas en un apartado de datos ampliados o información complementaria. \\
+    A contrario de la anterior referencia, no se pide un tipo de letra o estructura específica, sin embargo si se 
+    es insistente con que debe de tener un detalle corto y preciso de los procesos y protocolos que se tomaron 
+    para poder facilitar la reproducción de dicho experimento, y además se pide que los métodos vengan separados 
+    por secciones en negritas y subsecciones que deberán ir enumeradas cada una de manera ascendente y desde la 
+    última utilizada; por otra parte se recomienda usar un medio (no específica cual) para compartir datos, protocolos 
+    ó resultados, inclusive en esta misma página se facilita uno al usuario.
+    \section*{PNAS}
+    En la siguiente referencia \cite{PNAS} cuyas siglas significa: Procedings of the National Academy of Sciences of
+    the Unites States of America, a simple vista la página no proporciona detalles sobre la letra o estructura del 
+    manuscrito o de las secciones pero tiene un apartado que acepta archivos tipo tex, y no solo eso tiene un apartado 
+    donde puedes descargar el código  para un manuscrito, tanto del archivo principal como las clases, la bibliografía, 
+    las ecuaciones y además te dice que hacer al obtener posibles errores de compilación en tu archivo y un extra es 
+    que si usar Overleaf tiene ciertas reglas de como compartirlo desde esta página. \\
+    Algo más que tiene es que tiene un pequeño cuadro con los tipos de documentos y que apartados debe de tener. 
+    \section*{SCIELO}
+    La penúltima de nuestras referencias es la Ingeniería Investigación y Tecnología de la  \cite{scielo}, la principal causa de 
+    agregar esta referencia fue que es una revista de origen mexicano, en esta página 
+    \href{http://www.scielo.org.mx/revistas/iit/einstruc.htm}{scielo}  se puede verificar la estructura del manuscrito
+    a grandes rasgos no se define una letra o interlineado específico, sin embargo son muy precisos en el orden de las 
+    secciones, otro detalle importante es que no aceptan archivos tipo tex y se pide que el documento no exceda las 
+    6000 palabras o 15 páginas, sobre la metodología no se especifíca que debe de cumplir solo se pide que todos los
+    métodos y pruebas tienen que estar presentes.
+    \section*{Indian Journal of Pharmacology}
+    Por último, quise agregar la referencia  \cite{international2006uniform} ya que me gustó mucho el indice que tiene la página, prácticamente te 
+    detalla cada una de las partes que te pide, sin embargo al igual que la primer referencia esta más vinculada a la 
+    medicina, en esta página \href{https://ijp-online.com/article.asp?issn=0253-7613;year=2006;volume=38;issue=2;spage=149;epage=162;aulast=International#IV.%20Manuscript%20preparation%20and%20submission}{IJP}
+    tenemos al lado izquierdo un detalle de cada una de las secciones que debe de llevar así como unos apartados interesantes
+    como la ética, publicaciones, referencias, figuras, tablas entre muchas más.
+    \\ En el apartado de preparación de Manuscrito podemos encontrar algunos lineamientos generales, en la sección de 
+    Métodos hay un detalle que me llamó la atención, resulta que si uno o varios de los autores utilizan como variable
+    la raza o la etnia de sus participantes tienen que detallar y justificar el uso de estas mismas.
+    Además se pide de igual manera que en otras referencias el uso detallado para describir los métodos y procedimientos
+    de tal manera que permita de manera eficaz y rápida replicar estos mismo, y añadiendo los detalles que se contemplaron 
+    para localizar, seleccionar, extraer y sintetizar datos, y por último se pide que cada uno de ellos lleve datos estadísticos
+    que se detallan en el apartado de estadísticos.
+
+
+
+
+
+
+
+
+
+    \newpage
+    \bibliography{biblio.bib}
+\end{document}
