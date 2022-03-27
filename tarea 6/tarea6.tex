@@ -1,0 +1,143 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, amsthm, graphicx, lipsum}
+\usepackage{hyperref}
+\usepackage[margin = 1 in]{geometry}
+\usepackage{enumerate}
+\usepackage[style = apa]{biblatex}
+\bibliography{biblio}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=red,
+    urlcolor=blue,
+    pdftitle={Tarea 6},
+    }
+\usepackage{fancyvrb}
+\usepackage{fancyhdr, lastpage}
+\pagestyle{fancy}
+\lhead{Investigación Diseño de experimentos}
+\rhead{Universidad Autónoma de Nuevo León}
+% \cfoot{Page \thepage\ of \pageref{LastPage}}
+
+\usepackage{etoolbox} %Use carefully!
+\patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{}
+
+\usepackage[Glenn]{fncychap}
+%Options: Sonny, Lenny, Glenn, Conny, Rejne, Bjarne, Bjornstrup
+
+
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage[most]{tcolorbox}
+
+\newtcbtheorem{theo}%
+  {Theorem}{}{theorem}
+  
+\usepackage{siunitx}
+\usepackage{setspace}
+\onehalfspacing
+
+\begin{document}
+
+\section*{Diseño de experimentos}
+\subsection*{Escuela Politécnica Superior de Mondragon, Mondragon Unibertsitatea}
+En este artículo se plantean las siguientes fases:
+
+\begin{enumerate}
+  \item Definir el proceso.
+  \item Conocer como es el proceso.
+  \item Planificación.
+  \item Experimentación.
+  \item Análisis.
+  \item Mejorar proceso-producto.
+  \item Controlar.
+  \item Estandarizar.
+\end{enumerate}
+
+En general, el artículo se basa en como definir adecuadamente los o el camino científico para un buen diseño de experimentos, cada una de las fases antes mencionadas se puede leer y obtener la definición en el artículo.
+
+Como un dato extra se presenta un ejemplo de un diseño de experimentos.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics*[scale = 0.4]{mapa_conceptual.png}  
+\end{figure}
+
+\newpage
+\subsection*{UANL}
+En este artículo se presentan herramientas para un análisis en un diseño de experimentos, algo muy interesante es que se enuncian una serie de parámetros a considerar como modelos para analizar los resultados obtenidos.
+
+Lo más importante a señalar es que se presenta un ejemplo de análisis de hipótesis.
+
+\subsection*{Muestreo y Diseño de Experimentos: Aspectos conceptuales}
+
+En este artículo se presenta un detalle al muestreo y su relación con el diseño de operaciones.
+
+Se presentan como objetivos del muestreo:
+
+\begin{enumerate}
+  \item Estimación y Verificación de hipótesis.
+  \item Muestreo y Diseño de Experimentos.
+  \item Definición y cuantificación de la variable.
+  \item Tamaño de muestra.
+  \item Muestreo y submuestreo.
+  \item Muestreos repetidos en tiempo y/o espacio.
+\end{enumerate}
+
+\subsection*{APLICACIÓN DEL DISEÑO DE EXPERIMENTOS PARA EL
+ANÁLISIS DEL PROCESO DE DOBLADO}
+
+Es artículo lo adjunto con el propósito de tener un ejemplo de un diseño de experimentos, y con un detalle extra el cual es que no solo se presenta el diseño de experimentos si no que además se explica cada uno de los detalles en cada parte de este mismo.
+
+Las etapas presentadas son las siguientes:
+
+\begin{enumerate}
+  \item Proceso.
+  \item Planteamiento.
+  \begin{enumerate}[.1]
+    \item Selección de factores y niveles.
+    \item Selección de una variable de respuesta.
+    \item Elección del diseño experimental.
+    \item Realización del experimento.
+  \end{enumerate}
+  \item Análisis de datos.
+  \begin{enumerate}
+    \item Variable respuesta.
+    \item Interacción doble.
+    \item Interacción triple.
+    \item Interacción cuádruple.
+  \end{enumerate}
+\end{enumerate}
+
+\subsection*{Diseño de un experimento de preferencias declaradas para la
+elección de modo de transporte urbano de pasajeros}
+
+De igual manera que el artículo anterior, en este se presenta un ejemplo de un diseño de experimentos, con la diferencia de que en este no se explican las etapas a considerar, sin embargo se justifican cada una de las variables y parámetros utilizados.
+
+\subsection*{Tesisdeceroa100}
+Por último no es una revista científica, sin embargo me agrado por la manera didáctica en la cual se presentan las etapas para un diseño experimental.
+En resumen se presentan estos tres tipos:
+\begin{enumerate}
+  \item Medidas independientes / entre grupos: se utilizan diferentes participantes en cada condición de la variable independiente.
+  \item Medidas repetidas / dentro de los grupos: los mismos participantes participan en cada tratamiento de la variable independiente.
+  \item Pares combinados: cada condición utiliza diferentes participantes, pero se hacen coincidir en términos de características importantes, por ejemplo, género, edad, inteligencia, etc.
+\end{enumerate}
+
+\section*{Referencias}
+Unzueta-Aranguren, G., Orue-Irasuegi, A., Esnaola-Arruti, A., Eguren-Egiguren, J.. (2019). METODOLOGIA DEL DISEÑO DE EXPERIMENTOS. CASO DE ESTUDIO, LANZADOR. DINA , 94(1). 16-21. DOI: \url{https://doi.org/10.6036/8687} \newline
+
+Conceptuales, M., 2022. Muestreo y Diseño de Experimentos: Aspectos conceptuales . [en línea] Phytoma.com. Disponible en: \href{https://www.phytoma.com/la-revista/phytohemeroteca/164-diciembre-2004/muestreo-y-diseo-de-experimentos-aspectos-conceptuales}{https://www.phytoma.com}[Consultado el 24 de marzo de 2022]. \newline
+
+PÉREZ, G., ARANGO, M. D., \& AGUDELO, Y. (2013). APLICACIÓN DEL DISEÑO DE EXPERIMENTOS PARA EL ANÁLISIS DEL PROCESO DE DOBLADO (DESIGN OF EXPERIMENTS APPLICATION FOR BENDING PROCESS ANALYSIS). Revista EIA, 6(11), 145–156. Recuperado a partir de \url{https://revistas.eia.edu.co/index.php/reveia/article/view/411} \newline
+
+ILZARBE IZQUIERDO, LAURA, \& TANCO, MARTÍN, \& VILES, ELISABETH, \& ÁLVAREZ SÁNCHEZ-ARJONA, MARÍA JESÚS (2007). El diseño de experimentos como herramienta para la mejora de los procesos. Aplicacion de la metodologia al caso de una catapulta. Tecnura, 10 (20),127-138.[fecha de Consulta 23 de Marzo de 2022]. ISSN: 0123-921X. Disponible en: \url{https://www.redalyc.org/articulo.oa?id=257021012011} \newline
+
+Sartori, J. (2006). Diseño de un experimento de preferencias declaradas para la elección de modo de
+transporte urbano de pasajeros. Cuarta Época, Vol. 44, No. 2, pp. 81-123.
+% \textcite{Dan}
+% \textcite{conceptuales}
+% \textcite{Baz}
+% \printbibliography
+
+
+\end{document}
