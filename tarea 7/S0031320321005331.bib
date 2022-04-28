@@ -1,0 +1,13 @@
+@article{HUANG2022108353,
+title = {Learning to select cuts for efficient mixed-integer programming},
+journal = {Pattern Recognition},
+volume = {123},
+pages = {108353},
+year = {2022},
+issn = {0031-3203},
+doi = {https://doi.org/10.1016/j.patcog.2021.108353},
+url = {https://www.sciencedirect.com/science/article/pii/S0031320321005331},
+author = {Zeren Huang and Kerong Wang and Furui Liu and Hui-Ling Zhen and Weinan Zhang and Mingxuan Yuan and Jianye Hao and Yong Yu and Jun Wang},
+keywords = {Mixed-Integer programming, Cutting plane, Multiple instance learning, Generalization ability},
+abstract = {Cutting plane methods play a significant role in modern solvers for tackling mixed-integer programming (MIP) problems. Proper selection of cuts would remove infeasible solutions in the early stage, thus largely reducing the computational burden without hurting the solution accuracy. However, the major cut selection approaches heavily rely on heuristics, which strongly depend on the specific problem at hand and thus limit their generalization capability. In this paper, we propose a data-driven and generalizable cut selection approach, named Cut Ranking, in the settings of multiple instance learning. To measure the quality of the candidate cuts, a scoring function, which takes the instance-specific cut features as inputs, is trained and applied in cut ranking and selection. In order to evaluate our method, we conduct extensive experiments on both synthetic datasets and real-world datasets. Compared with commonly used heuristics for cut selection, the learning-based policy has shown to be more effective, and is capable of generalizing over multiple problems with different properties. Cut Ranking has been deployed in an industrial solver for large-scale MIPs. In the online A/B testing of the product planning problems with more than 107 variables and constraints daily, Cut Ranking has achieved the average speedup ratio of 12.42% over the production solver without any accuracy loss of solution.}
+}

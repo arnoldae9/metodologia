@@ -1,0 +1,89 @@
+\documentclass{report}
+\usepackage[margin = 1 in]{geometry}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, amsthm, graphicx, lipsum}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=red,
+    pdftitle={Insert tittle of pdf},
+    }
+\usepackage{fancyvrb}
+\usepackage{fancyhdr, lastpage}
+\pagestyle{fancy}
+\lhead{Tarea 9 Investigación de repositorios y mailing list}
+\rhead{Universidad Autónoma de Nuevo León}
+% \cfoot{Page \thepage\ of \pageref{LastPage}}
+
+\usepackage{etoolbox} %Use carefully!
+\patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{}
+
+\usepackage[Glenn]{fncychap}
+%Options: Sonny, Lenny, Glenn, Conny, Rejne, Bjarne, Bjornstrup
+\usepackage[margin = 1 in]{geometry}
+
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage[most]{tcolorbox}
+
+\newtcbtheorem{theo}%
+  {Theorem}{}{theorem}
+  
+\usepackage{siunitx}
+\usepackage{setspace}
+\onehalfspacing
+\begin{document}
+
+\section*{Pre-Prints}
+
+\subsection*{OSFPREPRINTS}
+En este sitio podemos encontrar una biblioteca gratuita de artículos no publicados o artículos en revisión, así mismo podemos aportar nuestros propios artículos.
+
+Un detalle importante es que cuenta con una guía para el llenado de la petición y un ejemplo de como realizar un artículo, este mismo se puede descargar en formato pdf.
+
+Podemos ingresar a esta página con en este sitio \href{https://osf.io/preprints/}{OSF}.
+
+\subsection*{UANL}
+
+Nuestra universidad cuenta con un sistema denominado auto-archivar, el cual consta de poder guardar nuestros artículos de forma que podamos distribuir copias digitales con el fin de dar acceso al trabajo.
+
+Se puede visitar su página, así como su guía en el siguiente link \href{http://eprints.uanl.mx}{UANL}
+
+\subsection*{Repositorio Nacional}
+
+Una alternativa es el repositorio nacional el cual es una plataforma digital que proporciona acceso abierto en texto completo a diversos recursos de información académica, científica y tecnológica, es decir, sin requerimientos de suscripción, registro o pago.
+
+Se puede visitar la página en el siguiente enlace \href{https://www.repositorionacionalcti.mx}{Repositorio Nacional} y aquí mismo descargar la solicitud para depositar nuestros documentos.
+
+\subsection*{Scielo}
+En este repositorio podemos pedir adjuntar nuestros resultados, algo importante a resaltar es que se nos puede pedir archivos que avalen nuestros resultados.
+
+En esta misma página se nos presentan dos guías para la petición y carga de documentos, todos los que se puedan pedir. Se puede consultar en \href{https://scielo.org/es/}{Scielo}.
+
+\subsection*{Latindex}
+Tal vez una de las más exigentes que encontré, no solo se pide que accedas a licencias de acceso abierto, además de esto se pide llenar un registro en el cual se pide que tengamos al menos una revista publicada y además la revista en cuestión tiene que estar con registro ISSN.
+
+Tanto como los ejemplos y procesos a seguir se pueden consultar en el siguiente link \href{https://www.latindex.org/latindex/inicio}{Latindex}
+
+\section*{Mailing List}
+\subsection*{SIAM}
+El primer mailing-list es \href{http://lists.siam.org/mailman/listinfo/siam-opt}{SIAM} el cual es un grupo enfocado en la optimización, en su página describe que no esta enfocado en un campo específico es de manera general y se estarán recibiendo correos tanto de debates, reuniones, ponencias etc.
+
+\subsection*{Yale}
+Este mailing-list lo adjunto por la importancia de la universidad \href{https://subscribe.yale.edu/login?returnURL=https%3A%2F%2Fsubscribe.yale.edu%2Fbrowse%3Fsearch%3Dmath%2Bdus}{Yale}, es un grupo que esta enfocado en las matemáticas, tiene acceso tanto para alumnos y público en general.
+
+\subsection*{DMANET}
+Discrete mathematics and algorithms es un grupo que esta enfocado en como su nombre lo deja claro en matemáticas y algoritmos, es de acceso a todo público y se puede consultar en su página \href{http://www.zaik.uni-koeln.de/mailman/listinfo/dmanet}{DMANET}.
+
+\subsection*{Source Forges}
+En este grupo se describe el enfoque en la optimización de redes, también es de acceso público y se puede consultar en su página \href{https://sourceforge.net/projects/opennop/lists/opennop-devel}{Source Forge}.
+
+\subsection*{Stanford}
+Una lista muy interesante es la de la \href{https://mailman.stanford.edu/mailman/listinfo/icme-linear-algebra-optimization}{Stanford}, es un grupo enfocado en \textit{Linear-algebra-optimization} es de acceso público.
+
+
+
+
+\end{document}
