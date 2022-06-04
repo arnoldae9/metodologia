@@ -1,296 +1,333 @@
 \documentclass[letterpaper, 10 pt]{article}
 \usepackage[spanish]{babel}
-\usepackage[margin = 1 in]{geometry}
+\usepackage[margin = 0.5 in]{geometry}
 \usepackage[utf8]{inputenc}
+\usepackage{multicol}
 \usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{caption}
 \usepackage{hyperref}
+\usepackage{natbib}
+
 \hypersetup{
 	colorlinks=true,
 	linkcolor=black,
-	urlcolor=blue,
+	urlcolor=black,
+	filecolor=black,
+	citecolor=blue,
 	pdftitle= Uso de Q-learning y redes neuronales como alternativa
 }
-\usepackage{fancyvrb}
-\usepackage{fancyhdr, lastpage}
-\pagestyle{fancy}
-\lhead{Universidad Autónoma de Nuevo León}
-\rhead{Facultad de Ingeniería Mecánica y Eléctrica}
-%\cfoot{Page \thepage\ of %\pageref{LastPage}}
-%\lfoot{Footnotes pages}
-\rfoot{\today}
-\usepackage{parskip}
-\usepackage{setspace}
-\onehalfspacing
 
-\newcommand{\Tittle}[1]{ {\Huge \bfseries{ #1 }}  }
-\newcommand{\subTittle}[1]{ {\Large \bfseries{ #1 }}  }
-\newcommand{\normalTittle}[1]{ {\normalsize \bfseries{ #1 }}  }
 
+\newcommand{\fjsp}{problema de programación de taller de trabajo flexible}
+\newcommand{\Tittle}[1]{ {\LARGE  #1 }  }
+\newcommand{\subTittle}[1]{ {\Large  #1 }  }
+\newcommand{\normalTittle}[1]{ {\normalsize  #1 }  }
+
+\providecommand{\keywords}[1]
+{
+	\small	
+	\textbf{\textit{Keywords---}} #1
+}
+
+\newenvironment{Figura}
+{\par\medskip\noindent\minipage{\linewidth}}
+{\endminipage\par\medskip}
+
+\usepackage{enumerate}
 
 \begin{document}
 
 %\ttfamily %mecanografiada
 %\rmfamily %Roman
 \sffamily %sans
-\begin{center}
 
-	\Tittle{Uso de Q-learning y redes neuronales como alternativa a la solución del problema flexible scheduling} \par
-	\subTittle{Arnoldo Del Toro Peña}  \par
-	\subTittle{Supervisor de tesis:} \par
-	\subTittle{Dr. Vincent Andre Lionel}\textbf{\Large Boyer } 
-\end{center}
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1cm}
+		
+		\Tittle{UNIVERSIDAD AUTÓNOMA DE NUEVO LEÓN} \\
+			\vspace{1.5 cm}
+		\Tittle{FACULTAD DE INGENIERÍA MECÁNICA Y ELÉCTRICA} \\ 
+		\vspace{1cm}
+		{\LARGE Uso de Q-learning como alternativa a la solución del problema de programación de taller de trabajo flexible}
+		\\
+			\vspace{2.5 cm}
+		\includegraphics[width=0.3\textwidth]{uanl}
+		 \\
+		\vspace{1cm}
+		\subTittle{Arnoldo Del Toro Peña}  \vspace{0.25 cm} \\ 
+		\subTittle{Director de tesis:} \vspace{0.25 cm} \\
+		\subTittle{Dr. Vincent Andre Lionel Boyer} 
+		
+		
+		
+		\vfill
+		
+		{\LARGE  Propuesta de Investigación\\
+		Maestría en Ciencias de la Ingeniería con Orientación en Sistemas}
+		
+		\vspace{0.8cm}
+		
+		
+		
+		Monterrey, Nuevo León \\
+		\today
+		
+	\end{center}
+\end{titlepage}
 
+\pagestyle{empty}
+\tableofcontents
+
+%\newpage
+%\pagestyle{fancy}
+%
+%\newpage
+%\thispagestyle{plain}
+%
+%\begin{center}
+%	\large{\textbf{AGRADECIMIENTOS}}
+%\end{center}
+%
+%Al Consejo Nacional de Ciencia y Tecnología (CONACYT) por el apoyo
+%económico brindado durante la realización de mis estudios.
+%
+%Al Consejo, por haberme brindado la oportunidad de seguir
+%mi formación académica en sus aulas.
+%
+%A los integrantes de mi Consejo Particular:
+%
+%Al Dr. Vincent mi más sincero agradecimiento, por sus
+%atinadas indicaciones y consejos mismos que me fueron de gran utilidad en la
+%realización del presente trabajo de tesis.
+%
+%A mis profesores, compañeros de clase y todas aquellas personas que de
+%alguna manera me apoyaron en esta tarea, a todos gracias.
+
+\newpage 
 \begin{abstract}
-	Se define una búsqueda Q-learning como alternativa a la solución de un problema Flexible Scheduling, se establecen análisis a los resultados obtenidos en contraste a resultados obtenidos por métodos metahuerísticos.
+	En esta propuesta de tesis, se propone el uso de una búsqueda de aprendizaje por refuerzo (Q-learning) en un problema de programación de taller de trabajo flexible. Se obtienen instancias a partir de la literatura, el planteamiento metodológico de una búsqueda de soluciones basándose en el algoritmo aprendizaje por refuerzo (Q-learning), resultados con base en un algoritmo genético (Genetic Algorithm) y la discusión de los posibles resultados de una búsqueda de aprendizaje por refuerzo (Q-learning). 
+	
+	In this thesis proposal, the use of a reinforcement learning search (Q-learning) in a flexible job shop scheduling programming problem is proposed. Instances were obtained from the literature, the methodological approach of a search for extreme solutions in the reinforcement learning algorithm (Q-learning), results based on a genetic algorithm and the discussion of the possible results of a quest for reinforcement learning (Q-learning).
+		
 	% It's  a brief summary of approximately 300 words. It includes the important questions, the rationale for the study, the hypothesis, the method, and the other characteristics. When describing the method, the design, procedure, results, and discussion must be included.
 \end{abstract}
 
-\section*{Por favor dé una breve justificación de su proyecto de investigación propuesto:}
-La gran cantidad de tesis con métodos metahuerísticos deja muchas preguntas en el aire, y nos abre el camino para tratar de explorar nuestras alternativas a estos mismos, tanto para mejorar o descartar posibles caminos.
-% In this section, the research proposal must be justified.
+{{\small } \bfseries Palabras clave---} Aprendizaje por refuerzo, metaheurístico, python \\
+\keywords{Q-learning, metaheuristic, python}
 
-\section*{Objetivos}
-Evidenciar si es viable un método alternativo a un método metahuerístico.
-% Describe clearly and concisely the objective of your research proposal.
+%\section{Justificación}
+%En los últimos años se ha visto el crecimiento de la inteligencia artificial en diferentes áreas de la ciencia y en particular en el área de investigación de operaciones.
+%% In this section, the research proposal must be justified.
+%
+%\section{Objetivo}
+%Evidenciar si es viable un método basado en búsqueda Q-learning como alternativa a un método metaheurístico para la solución a un \fjsp.
+%% Describe clearly and concisely the objective of your research proposal.
+\begin{multicols}{2}[][9 cm]
+\section{Introducción}
+% motivación
+En los últimos años se puede decir que ha existido un uso casi exclusivo de métodos exactos y metaheurísticos en el área de investigación de operaciones, dejando de lado el campo que a tomado mucho auge estos últimos años a favor de la inteligencia artificial, es por eso que existe el motivo de una implementación de inteligencia artificial en esta misma área.
 
-\section*{Introducción}
-% Establecer el territorio
+% Oportunidad
+Esto representa una oportunidad interesante al momento de pensar en alternativas a métodos metaheurísticos, lo cual contiene la circunstancia de implementar un aprendizaje por refuerzo (Q-learning), 
+%Innovación
+siguiendo esta posibilidad se busca la actualización a las emergentes tecnologías como lo es la inteligencia artificial con el fin de lograr la innovación en métodos de aproximación en el campo de la investigación de operaciones.
 
-Uno de los métodos más utilizados es el método metahuerístico, dejo en claro que no se pretende criticar nada de ellos, pero en los últimos años estos han sido demasiado utilizados, llegando a ser el ingrediente esencial al momento de intentar solucionar un problema de Optimización.
+%Pregunta y problema
+La pregunta principal que se aborda es la siguiente: ¿Es viable utilizar la búsqueda aprendizaje por refuerzo (Q-learning) en el \fjsp?, y de ser así ¿Bajo que condiciones es favorable utilizar una búsqueda aprendizaje por refuerzo (Q-learning)?, bajo estas cuestiones se plantea la hipótesis: ``El aprendizaje por refuerzo (Q-learning) es una alternativa de calidad satisfactoria para obtener una solución al \fjsp", esto define como propósito principal generar evidencia fundamentada para descartar o aceptar la hipótesis antes definida, y con objetivo específico en el problema de programación de taller de trabajo flexible. 
 
-Esto representa un tema interesante al momento de pensar en alternativas a métodos metahuerísticos, lo cual nos lleva a cuestionar si el uso de estos es debido a su efectividad, rapidez o algún otro factor.
+% Estructura No se debe de dejar duda de que se va hacer y como se va a hacer
+En las secciones siguientes se encuentran: la descripción de la literatura consultada, el marco metodológico, resultados, conclusiones y las respectivas referencias bibliográficas. En la sección de la literatura se tiene un pequeño resumen de los artículos más relevantes para nuestro estudio, en el marco metodológico se describe el proceso y procedimientos llevados a cabo, llegando al apartado de resultados se presentan los datos obtenidos hasta este momento y por último se finaliza con una sección para presentar conclusiones.
 
-% Establecer el nicho
 
-En este documento no se pretende verificar alguno de estos factores en los métodos metahuerísticos, si no que se pretende presentar una posible alternativa a estos mismos, tomando como partida los resultados ya obtenidos por algún método metahuerístico.
+\section{Marco teórico}
+% definir todos los conceptos utilizados, en que punto se encuentra la ciencia en nuestro experimento, información pertinente, seleccionada, ordenada y jerarquizada de manera que el lector pueda ubicar la investigación en su contexto teórico
+%Antecedentes y contexto.
+%Revisión de literatura.
+%Tomando en cuenta la actual literatura que tenemos; existen muchos artículos que hablan de ``Q-learning'' aplicadas a la solución de problemas de ruteo, asignación, entre otras; sin embargo hasta el día de hoy no se ha encontrado ningún documento que presente un análisis en contraste con el uso de métodos metaheurísticos, por lo cual nos motiva a seguir pero también a tener precaución, ya que queda una pregunta en el aire, ¿Será útil la comparación?
+%
+%Lo que se quiere expresar es que el hecho de no haber tantos artículos puede ser debido a los carentes resultados comparados con los correspondientes de métodos metaheurísticos, por el excesivo tiempo de aprendizaje o tal vez por algún otro factor negativo hacia el aprendizaje ``Q-learning''.
 
-% Ocupar el nicho
-
-Es aquí donde estableceremos nuestra atención, en una alternativa para la solución de problemas resueltos por métodos metahuerísticos.
-
-Estableceremos una solución por medio de un aprendizaje "Q-learning" y por medio de redes neuronales nuestro agente tendrá la capacidad de resolver estos problemas, una de las características de nuestra alternativa es que el aprendizaje "Q-learning" sus tiempos tienden a un número muy grande de iteraciones el cual está en contraste con un método metahuerístico.
-
-Posteriormente compararemos el resultado generado por el aprendizaje implementado en contraste a una solución generada por un método metahuerístico.
-
-Por último mencionar que nos centramos  solo en el problema  Flexible Scheduling problem.
-
-\section*{Antecedentes}
 %#FIXME cambiar antecedentes a estado del arte, y en antecedentes agregar libros que tengan que ver con métodos o procesos de tu tesis
-Xinwei Chen, Marlin W. Ulmer, Barrett W. Thomas, University of Iowa,se presenta los detalles de la implementación DQL, los resultados analíticos junto con pruebas, ilustraciones de la toma de decisiones, combinaciones de funciones adicionales, un análisis del valor de no ofrecer el servicio y los resultados para expandir las decisiones de asignación.
-
-
-Se utilizó una estructura básica para cada una de las tres NN's: Input Layer, Hidden Layer and Output Layer.
-
-El artículo presenta unas variables de drones, vehículos terrestres y no prestar el servicio, cada una de estas variables es analizada a lo largo del artículo.
-
-El artículo presenta unos resultados muy favorables a las ecuaciones planteadas (`` Q-learning '' ), pero no compará sus resultados con algún método metahuerístico, en este mismo artículo se agrega un apartado donde se analizan los casos de cada una.
-
-Un apartado interesante es en el que señalan que podría utilizarse un método metahuerístico para determinar la solución pero que este mismo limita las variables por lo cual no lo hicieron.
-
-\section*{El estado del Arte}
-Tomando en cuenta la actual literatura que tenemos, hay muchos artículos que hablan de ``Q-learning'' con redes neuronales aplicadas a la solución de problemas de ruteo, asignación, entre otras ... en general problemas de optimización, ninguno de ellos (hasta el momento) a presentado un análisis en contraste con el uso de métodos metahuerísticos, por lo cual nos motiva a seguir pero también a tener precaución, ya que queda una pregunta en el aire, ¿Será útil la comparación?
-
-Lo que se quiere expresar es que el hecho de no haber tantos artículos puede ser debido a los carentes resultados comparados con los correspondientes de métodos metahuerísticos o por el excesivo tiempo de aprendizaje o tal vez por algún otro factor negativo hacia el aprendizaje ``Q-learning''.
-
-\section{Literature  Review}
-Sometimes the literature review is incorporated into the introduction section.
-However, most professors prefer a separate section, which allows a more thorough
-review of the literature.
-\newline Import points:
+%En los resultados presentados por Chen \textit{et al.} \cite{CHEN2022939}, se presentan los detalles de la implementación Deep Q-Learning, los resultados analíticos junto con pruebas, ilustraciones de la toma de decisiones, combinaciones de funciones adicionales, un análisis del valor de no ofrecer el servicio y los resultados para expandir las decisiones de asignación. Además se utilizó una estructura básica para cada una de las tres etapas: Input Layer, Hidden Layer and Output Layer. El artículo presenta variables de drones, vehículos terrestres y no prestar el servicio, cada una de estas variables es analizada a lo largo del artículo. Se presentan unos resultados muy favorables a las ecuaciones planteadas (Q-learning), pero no compara sus resultados con algún método metaheurístico, en este mismo artículo se agrega un apartado donde se analizan los casos de cada una. Existe un apartado interesante en el cual se sugiere que puede usarse un método metaheurístico para determinar la solución pero que este mismo limita las variables por lo cual no se realizó, esto es algo importante por que se nos muestra que puede existir una limitante de variables que favorece nuestro método.
+%
+%En el artículo perteneciente a los autores  Huang \textit{et al.} \cite{HUANG2022108353}\nocite{*}, se puede observar el uso de aprendizaje automatizado para la selección del número de cortes para una programación eficiente de enteros mixtos, el cual podemos señalar como base para el aprendizaje que buscamos.
+%
+%Se puede verificar por Pezzella \cite{pezzella2008genetic} la obtención de soluciones para \fjsp \, en base a un algoritmo genético, estos resultados favorecen a la alternativa de usar métodos metaheurísticos.
+%
+%Los autores Dayan, Peter y Watkins \cite{dayan1992q} nos presentan en su artículo una demostración a detalle de la convergencia para el teorema de Q-learning lo cual garantiza una solución.
+%
+%Como se menciona por Olabe \cite{olabe1998redes}, las redes neuronales tienen una justificación biológica para su aprendizaje automatizado, el cual buscamos obtener de manera óptima.
+%
+%En el artículo presentado por Qiu \textit{et al.} \cite{QIU2022108362}, podemos observar un reforzamiento al aprendizaje profundo con un enfoque en instalación y entrega a domicilio.
+%
+%En el artículo escrito por Meng \textit{et al.} \cite{MENG2020106347} se presentan resultados en base a programación lineal entera mixta, así como un modelo de programación con restricciones para dar solución a \fjsp.
+\subsection{Conceptos}
+A continuación, se definen unos conceptos que se utilizarán a lo largo de este escrito:
 \begin{enumerate}
-	\item Organization and structure.
-	\item Focus, unity, and coherence.
-	\item Not be repetitive or verbose.
-	\item Falling cite.
-	\item Citing irrelevant or trivial references.
-	\item Not depending too much on secondary sources.
+	\item  \textbf{Agente} (Agent):  entidad que puede desenvolverse de manera autónoma en un entorno determinado. Los agentes tienen la misión de (usando datos obtenidos del entorno) realizar una tarea lo mejor que puedan. Las acciones realizadas por el agente tienen repercusión en el entorno: producen un cambio de estado y proporcionan al agente una recompensa que le indica lo bien o mal que está realizando la tarea (reward) \citep{fernandez2016ajustando}.
+	\item  \textbf{Aprendizaje por refuerzo}: (Reinforcement Learning)  tipo específico de aprendizaje dentro del campo del aprendizaje automático (Machine Learning) muy utilizado para juegos y entornos interactivos. Se caracteriza por realizar un entrenamiento mediante señales de refuerzo, por no poder determinarse a priori la mejor decisión absoluta ante un estado cualquiera. En este caso, las señales de refuerzo representan una evaluación de las acciones tomadas similar a una función de idoneidad \citep{fernandez2016ajustando}.
+	\item  \textbf{Inteligencia artificial} (Artificial intelligence): “la habilidad de los ordenadores para hacer actividades que normalmente requieren inteligencia humana”. Para brindar una definición más detallada se puede decir que la AI (por sus siglas en inglés) es la capacidad de las máquinas para usar algoritmos, aprender de los datos y utilizar lo aprendido en la toma de decisiones tal y como lo haría un ser humano \cite{rouhiainen2018inteligencia}. 
+	\item  \textbf{Python}: lenguaje de programación fácil de aprender y potente. Tiene eficaces estructuras de datos de alto nivel y una solución de programación orientada a objetos simple pero eficaz. La elegante sintaxis de Python, su gestión de tipos dinámica y su naturaleza interpretada hacen de él el lenguaje ideal para guiones (scripts) y desarrollo rápido de aplicaciones, en muchas áreas y en la mayoría de las plataformas \cite{van1991guia}.
+	\item  \textbf{Redes Neuronales} (Neural Networks):  Existen numerosas formas de definir a las redes neuronales; desde las definiciones cortas y genéricas hasta las que intentan explicar más detalladamente qué son las redes neuronales. Por ejemplo; un sistema de computación compuesto por un gran número de elementos simples, elementos de procesos muy interconectados, los cuales procesan información por medio de su estado dinámico como respuesta a entradas externas \cite{matich2001redes}.
+	\item  \textbf{Aprendizaje por refuerzo} (Q-learning): \cite{watkins1992q} es una forma de aprendizaje por refuerzo sin modelos. También puede ser visto como un método de programación dinámica asíncrona (DP). Proporciona a los agentes la capacidad de aprender a operar de manera óptima en los dominios markovianos experimentando las consecuencias de acciones, sin exigirles que construyan mapas de los dominios.
+	\item \textbf{Problema de programación de taller de trabajo flexible
+	(Flexible Job Shop Scheduling Problem)}: \cite{pezzella2008genetic} es una extensión del problema de programación de taller clásico y se considera fuertemente NP-difícil (NP-hard). En FJSSP (por sus siglas en inglés) la misma operación podría ser procesada en más de una máquina por lo que hay máquinas alternativas disponibles para procesar un trabajo en particular. FJSSP consta de dos sub-problemas. Lo primero es asignar cada operación a una salida de máquina, mientras que el segundo se ocupa de la secuenciación de las operaciones asignadas en las máquinas.
 \end{enumerate}
 
-\section*{Solución propuesta y Diseño de experimentos}
-La oportunidad de implementación de un algoritmo por aprendizaje automatizado, se presenta al momento de tener una cantidad exhaustiva de métodos metahuerísticos.
+\subsection{Antecedentes}
+Desde principios del aprendizaje automático (Machine Learning) hasta la actualidad han habido numerosos avances importantes la mayoría en el campo de los videojuegos, sin embargo su uso no es nulo en el campo de la optimización.
 
-Las instancias se recolectaron de los artículos presentados en la bibliografía.
+\cite{CHEN2022939} usan el aprendizaje por refuerzo (Q-learning) en un problema de entrega el mismo día (Same-day delivery) utilizando vehículos y drones, también detallan una solución aproximada usando el aprendizaje por refuerzo (Q-learning). Los resultados computacionales mostrados demuestran que el algoritmo es capaz de tomar decisiones de servicio y asignación de drones permitiendo un número esperado mayor de clientes atendidos a lo largo del día. Además se menciona que pueden mejorar los resultados de métodos heurísticos al permitir la reasignación de pedidos aceptados; sin embargo se advierte que esto puede derivar en una explosión de tiempo computacional, lo cual es una advertencia importante a tomar en cuenta.
 
-El objetivo de nuestro experimento es poder analizar si es realmente factible utilizar un algoritmo de aprendizaje automatizado en paralelo o en reemplazo de un método metahuerístico.
+ \cite{HUANG2022108353} presentan el método clasificación de corte (Cut Ranking) para seleccionar los cortes en un problema de ramificación y corte para programación entera mixta (mixed-integer programming).  Los MIP (por sus siglas en inglés) sintéticos planteados en este artículo demuestran que la selección de cortes basada en una clasificación aprendida es más competitiva con otras heurísticas manuales,  y también con capacidad de generalización en problemas con diferentes escalas, rangos de coeficientes o estructuras.
 
-Se presentan un conjunto de instancias de medidas variadas, es importante señalar que las instancias se presentan de manera independiente.
+\cite{QIU2022108362} en lugar de utilizar algoritmos de optimización para resolver el problema de entrega e instalación a domicilio, desarrollan una optimización neuronal basada en un mecanismo de aprendizaje por refuerzo profundo. Los resultados de sus experimentos confirman la calidad de solución y  eficiencia computacional ante algunos algoritmos clásicos heurísticos. \cite{QIU2022108362} dejan en claro que pretenden que su trabajo motive el estudio de aprendizaje por refuerzo en otros problemas de optimización combinatoria.
 
-De cada instancia se tiene el mejor resultado obtenido por medio de un proceso metahuerístico, que se detalla en cada una de las instancias (no se profundiza en el método metahuerístico).
+\cite{pezzella2008genetic} presentan un algoritmo genético (Genetic Algorithm) para la solución al problema de programación de taller de trabajo flexible y demuestran que la propuesta GA (por sus siglas en inglés) es de propósito general y se puede adaptar para cualquier función objetivo sin cambiar la rutina de GA. El enfoque GA es comparado con catorce metaheurísticas y por último los resultados muestran que el enfoque encuentra soluciones que son iguales o superiores a los enfoques anteriores.
 
-Cada instancia se somete al algoritmo propuesto, de inicio se presentan resultados con un criterio de parada de n horas, posteriormente se presentan los resultados de la instancia con mejor aproximación sin un límite de n horas. 
+ \cite{MENG2020106347} presentan resultados a los modelos de programación lineal entera mixta (mixed-integer linear programming) y programación de restricciones (constraint programming), MILP y CP por sus siglas en inglés respectivamente, en el escrito se demuestra que los modelos MILP y CP siempre pueden obtener la misma solución para todas las instancias con el mismo tiempo, mientras que los algoritmos metaheurísticos no pueden asegurar la misma solución en cada repetición incluso para instancias pequeñas, el modelo CP supera a todos los demás algoritmos existentes en términos de calidad en solución y eficiencia. 
 
-El proceso no se tiene definido actualmente, aun se sigue trabajando en la ecuación para el aprendizaje por lo cual los detalles del proceso interno sigue en construcción.
+\cite{palacio2022q} presentan un enfoque de aprendizaje para un escenario real de programación de taller de trabajo flexible mundial, los experimentos muestran que el algoritmo es capaz de producir mejores resultados que los existentes en términos de tiempo máximo de terminación de todas las tareas (makespan). También se demuestra como el agente puede tomar decisiones cuando por alguna razón una acción se convierte en horario inválido.
 
-En la siguiente tabla se presentan los resultados de cada instancia:
-
-\begin{center}
-	\begin{table}[ht]
-		\centering
-		\begin{tabular}{|c|c|l|l|}
-		\hline
-		\multicolumn{1}{|l|}{\textbf{Instancia}}                   & \multicolumn{1}{l|}{\textit{\begin{tabular}[c]{@{}l@{}}Resultado \\ Metahuerística\end{tabular}}} & \multicolumn{1}{c|}{\textit{\begin{tabular}[c]{@{}c@{}}Resultado\\ Algoritmo\end{tabular}}} & \multicolumn{1}{c|}{\textit{Horas}}               \\ \hline
-		\textit{1}                                                 &                                                                                                   &                                                                                             & $n_1 $                                             \\ \hline
-		\textit{2}                                                 &                                                                                                   &                                                                                             & $n_2$                                              \\ \hline
-		\textit{\begin{tabular}[c]{@{}c@{}}.\\ .\\ .\end{tabular}} &                                                                                                   &                                                                                             & \begin{tabular}[c]{@{}l@{}}.\\ .\\ .\end{tabular} \\ \hline
-		\textit{m}                                                 &                                                                                                   &                                                                                             & $n_m$                                              \\ \hline
-		\end{tabular}
-		\end{table}
-	
-\end{center}
-
-Y en la siguiente gráfica se presentan los valores de manera discreta de los resultados en ambos métodos.
-
-\begin{figure*}[h!t]
-	\centering
-	\includegraphics[scale = 0.2]{ejemplo_grafica.png}
-	\caption{Ficticio}
-\end{figure*}
-
-Primero se presentan los análisis de aproximación de resultados, para ello se toman los valores de resultados, tanto de metahuerísticos como del algoritmo.
-
-El análisis propuesto es el valor relativo, tomando como valor real el resultado obtenido por los métodos metahuerísticos.
-
-El siguiente factor a analizar es el tiempo asignado para cada uno de las instancias en nuestro algoritmo, para ello se realiza una diferencia en valor absoluto entre las horas de nuestro algoritmo y el tiempo de ejecución de cada método metahuerístico, estos  últimos se presentan a continuación:
-
-\begin{table}[ht]
-	\centering
-	\begin{tabular}{|c|c|}
-	\hline
-	\multicolumn{1}{|l|}{\textbf{Instancia}}                   & \multicolumn{1}{l|}{\textit{\begin{tabular}[c]{@{}l@{}}tiempo por\\ método metahuerístico\end{tabular}}} \\ \hline
-	\textit{1}                                                 &                                                                                                          \\ \hline
-	\textit{2}                                                 &                                                                                                          \\ \hline
-	\textit{\begin{tabular}[c]{@{}c@{}}.\\ .\\ .\end{tabular}} &                                                                                                          \\ \hline
-	\textit{m}                                                 &                                                                                                          \\ \hline
-	\end{tabular}
-	\end{table}
-
-
-
-Ya que se presentaron los tiempos se tomamos el menor de la diferencia, la instancia que se representa esta diferencia será la que a continuación mostramos los resultados sin un tiempo de n horas. Las diferencias las podemos ver en la siguiente tabla:
-
-Una vez que tenemos los resultados de la instancia seleccionada se presenta a continuación los análisis sobre un próximo experimento.
-
-\begin{center}
-	Insertar resultados
-\end{center}
-
-Nota: las conclusiones como la confirmación del experimento y próximos posibles experimentos dependen de los resultados obtenidos.
-
-Aun sin tener resultados, una mejora a este experimento es asignar al algoritmo un mayor número de instancias, esto es debido a que entre más se utilice el algoritmo este mismo se vuelve más eficaz; algo que se sabe de antemano es el excesivo costo de tiempo de ejecución de un algoritmo como el que estamos proponiendo, por lo cual sabemos de antemano que si la variable de tiempo es muy importante para nuestro problema no es factible para nuestro algoritmo; sin embargo la posibilidad de en un futuro cercanos solo insertar las instancias para tener una solución de una calidad similar a un método metahuerístico es la motivación a nuestro experimento.
-
-
-
-% \section{Methods}
-% The Method section is very important because it tells your Research Committee how
-% you plan to tackle your research problem. It will provide your work plan and describe
-% the activities necessary for the completion of your project.
-% You need to demonstrate your knowledge of alternative methods and make the case
-% that your approach is the most appropriate and most valid way to address your
-% research question. \newline
-% For quantitative studies, the method section typically consists of the following
-% sections:
-% \begin{enumerate}
-% 	\item Design.
-% 	\item Subjects or participants.
-% 	\item Instruments.
-% 	\item Procedure.
-% \end{enumerate}
-
+\cite{zhao2019improved} proponen la implementación de un algoritmo de doble capa de aprendizaje por refuerzo (Q-learning) así como acciones para la solución del problema dinámico de programación de talleres flexibles con fallas en máquinas. Los resultados indican que el modelo de agentes basados con enfoque pueden seleccionar una mejor estrategia bajo diferentes fallas de máquinas, lo cual prueba que el aprendizaje por refuerzo (Q-learning) propuesto es eficiente para el problema dinámico de programación de talleres flexibles con fallas en máquinas.
 \section{Metodología}
-El diseño estará conformado de inicio, en la implementación de una búsqueda basada en Q-learning, se buscará que en lugar de guardar los resultados en una tabla (lo que es habitual en Q learning) conectaremos estos mismos a  una red neuronal y que por medio de esta misma se de el aprendizaje,después todo esto se aplicará a un problema de flexible job shop scheduling problem.
+%tipo de investigación
+%materiales
+%poblacion y muestra
+%proceso de recogida de datos
+%Análisis de datos
 
-Se programará en python 3.7 por la disponibilidad en las bibliotecas encontradas. (las especificaciones del equipo están pendientes).
+El aprendizaje por refuerzo (Q-learning), propuesto por \cite{watkins1992q} contiene una de los más populares algoritmos de aprendizaje por reforzamiento de los últimos días. En este algoritmo el Agente intenta una acción en un determinado estado y evalúa sobre la base de una recompensa o castigo al interactuar con el entorno. El Agente al intentar todas las acciones en todos los estados, es capaz de juzgar cuál es la mejor decisión. El diagrama se muestra en la figura \ref{fig:1}.
 
-Aún estamos en la etapa de investigación, la cual solo ha tenido como resultados un par artículos, los cuales tendrán las respectivas referencias (este apartado hay que detallarlo más ya que los artículos aún están en revisión).
+\begin{Figura}
+	\centering
+	\includegraphics[width=0.9\textwidth]{diagrama.png}
+	\captionof{figure}{Interacción entre el Agente y el entorno. }
+	\label{fig:1}
+\end{Figura}   
 
-Lo primero que estamos planeando explorar es el uso de Q-learning, el cual solo hemos podido importar algunas librerías para el uso en problemas de 2-D, los cuales no son muy importantes para lo que tenemos planeado, sin embargo seguimos en la etapa de exploración.
+Antes del proceso de aprendizaje, $Q$ se inicializa a un posible valor arbitrario. Después, el Agente selecciona una acción en cada tiempo t, recibe una recompensa y llega a un nuevo estado, luego el valor de $Q$ se actualiza con base en la siguiente fórmula:
+\begin{equation}
+	\begin{split}
+		\displaystyle	Q(s_t,a_t)  = &Q(s_t,a_t) + \\ & \alpha[r_{t+1} + \gamma \, max(Q(s_{t+1},a) - Q(s_t,a_t) )] \label{eq:1}
+	\end{split}
+\end{equation}
+Donde $r_t$ representa la recompensa recibida cuando el Agente es transferido del estado $s_{t}$ al estado $s_{t+1}$. Y $\alpha$ representa la tasa de aprendizaje ($\alpha \in (0,1]$).
 
-Lo segundo que queremos es crear una pequeña red neuronal a la que también aplicaremos unas pequeñas pruebas en un problema.
+El objetivo del algoritmo aprendizaje por refuerzo (Q-learning) se actualiza siguiendo la fórmula:
 
-Una vez que tengamos verificado el uso en cada uno de estos antes  mencionados, lo que haremos será enlazarlos de una manera que el aprendizaje (que normalmente se obtendría con una fórmula de Q-learning) ahora provenga de una red neuronal.
+\begin{equation}
+	r_{t+1} + \gamma \, max Q(s_{t+1},a)
+\end{equation} 
 
-Si logramos esto lo siguiente será introducir unas instancias del problema clásico flexible job shop scheduling problem, en el cual existen ya demasiados resultados con el objetivo  de ver que tan precisos serian nuestros resultados.
-\section{Results}
-Obviously, you do not have results at the proposal stage. However, you need to have
-some idea about what kind of data you will be collecting, and what statistical
-procedures will be used in order to answer your research question or test you
-hypothesis.
-\section{Discussion}
-It is important to convince your reader of the potential impact of your proposed
-research. You need to communicate a sense of enthusiasm and confidence without
-exaggerating the merits of your proposal. That is why you also need to mention the
-limitations and weaknesses of the proposed research, which may be justified by time
-and financial constraints as well as by the early developmental stage of your
-research area.
-\section*{Common Mistakes in Proposal Writing}
-\begin{enumerate}
-	\item Failure to provide the proper context to frame the research question.
-	\item Failure to delimit the boundary conditions for your research.
-	\item Failure to cite landmark studies.
-	\item Failure to accurately present the theoretical and empirical contributions by other researchers.
-	\item Failure to stay focused on the research question.
-	\item Failure to develop a coherent and persuasive argument for the proposed research.
-	\item Too much detail on minor issues, but not enough detail on major issues.
-	\item Too much rambling -- going "all over the map" without a clear sense of direction. (The best proposals move forward with ease and grace like a seamless river.)
-	\item Too many citation lapses and incorrect references.
-	\item Too long or too short.
-	\item Failing to follow the APA style.
-	\item Slopping writing.
+Y un episodio del algoritmo termina cuando el estado $s_{t+1}$ es terminal.
+
+Los pasos específicos están detallados a continuación:
+
+\begin{enumerate}[\hspace*{0.5cm} %
+	\bfseries P{a}so 1]
+	\item Inicializar $Q(s,a)$ arbitrariamente
+	\item Establecer el parámetro $\gamma$ y $\alpha$
+	\item Repetir (para cada episodio):
+	\begin{enumerate}[1]
+		\item Inicializar \textit{s}
+		\item Repetir (para cada paso del episodio):
+		\begin{enumerate}[2.1]
+			\item Elegir \textit{a} desde \textit{s} usando una de las políticas de Q.
+			\item Tomar la acción \textit{a}, observar r, $s'$
+			\item $	\displaystyle	Q(s,a) \leftarrow Q(s,a) + \alpha[r + \gamma \, max(Q(s',a') - Q(s,a) )] $
+			\item s $\leftarrow s'$ 
+			\item Hasta que $s'$ sea terminal.
+		\end{enumerate}
+	\end{enumerate}
 \end{enumerate}
 
-\section*{Bibliografía}
-% https://www.hindawi.com/journals/je/guidelines/
-\subsection*{{\textit{Indawi journals}}}
-En el siguiente link podemos encontrar este resumen de como debe de ser una cita bibliográfica: \href{https://www.hindawi.com/journals/je/guidelines/}{hindawi}
+La programación de taller de trabajo se divide en dos categorías funcionales \citep{zhao2019improved}:
+\begin{enumerate}
+	\item Selección de trabajo
+	\item Selección de máquina.
+\end{enumerate}
+De acuerdo con los objetivos, las reglas de selección de trabajo y las reglas de selección de máquina se juntan; por lo tanto se necesita una regla de despacho de doble capa que incluya una capa para la selección de trabajo y una para la selección de máquina.
 
-Se pide que si es aceptado el artículo se reformatee el las citas y la misma bibliografía en estilo Chicago de Hindawi, se deja en claro que es total responsabilidad del autor dejar las citas claras y concisas y sobretodo verídicas. Se pide que las citas esten enumeradas desde la primera y se dejan estos ejemplos:
-\begin{center}
-	`` as discussed by Smith [9] '' \\ `` as discussed elsewhere [9, 10] ''
-\end{center}  
-Y una de las cosas más importantes es que se deja en claro que las referencias que no esten citadas serán removidas.
-\subsection*{{\textit{The Institution of Engineering and Technology}}}
-% https://ietresearch.onlinelibrary.wiley.com/hub/journal/20513305/homepage/author-guidelines#gpr
-En el documento pdf disponible en la siguiente dirección se enumeran una serie de estilos para las citas y la bibliografía, en esencia fue lo más interesante que se presenta en este documento, ya que da libertad de escoger de una forma limitada ya que solo se aceptan las enlistadas.
-\href{https://authorservices.wiley.com/asset/Author%20Guidelines%20Standard%20Reference%20Text.pdf}{IET}
+En la primer capa el conjunto de acciones son las siguientes \citep{zhao2019improved}:
 
-\subsection*{{\textit{Pattern recognition}}}
-En este pdf podemos encontrar en primer lugar que se pide que todas las citas bibliográficas aparezcan en la lista de bibliografías, también se pide que las bibliografías que se presenten tienen que estar en el formato estandar de la revista, cabe señalar que en este mismo pdf se muestran ejemplos para citas bibliograficas a revistas, libros etc.
+\begin{enumerate}
+	\item SPT: representa el mínimo de tiempo de procesamiento de las operaciones que serán seleccionados
+	\item EDD: representa el mínimo de tiempo de entrega en las operaciones que serán seleccionadas
+	\item FIFO: representa el primer trabajo en llegar que será seleccionado.
+\end{enumerate}
+
+La segunda capa se utiliza para seleccionar la máquina óptima de las máquinas alternativas según sus estados de procesamiento. Para simplificar el problema solo se seleccionará una regla de despacho definida como M, como la acción de la segunda capa que representa la máquina disponible más cercana que será seleccionada \citep{zhao2019improved}. 
+
+La doble capa en grupo de acción incluye: SPT+M, EDD+M, FIFO+M, Ninguna.
+
+Si se observa, el Agente realiza la selección en función de los estados; por lo tanto es muy importante determinar el número de estados, esto conlleva a dos resultados, por un lado si el número de estados es demasiado grande aumentarán en gran medida la carga calculada y por otro lado si es demasiada pequeña puede que no se adquiera el óptimo.
+
+Una vez mencionado lo anterior se define SD como un indicador para establecer estados. SD es la relación de duración en que una máquina falla al tiempo total de procesamiento de las operaciones restantes en máquina fallida. La fórmula se describe a continuación:
+
+\begin{equation}
+	SD = \dfrac{100 \times T}{RT}
+\end{equation}
+
+Donde T es la duración en que la máquina falla y RT representa el tiempo total de procesamiento del resto de operaciones a partir de que la máquina falla. 
+
+El Agente de aprendizaje por refuerzo (Q-learning) selecciona la mejor acción a juzgar de la recompensa (reward). Esto implica que la definición de recompensa es muy importante para el algoritmo. En el \fjsp \, el tiempo de espera representa uno de los factores más importantes a evaluar; por lo tanto se define la relación siguiente: ``entre más tiempo de espera menos es la recompensa" \citep{zhao2019improved}.
+
+Los valores contemplados hasta el día de hoy si la acción seleccionada en SPT+M, EDD+M, FIFO+M y ninguna son: 2, 1, -1 y -2 respectivamente \citep{zhao2019improved}. 
+
+La estructura del método propuesto se basa en la figura \ref{fig:2} \citep{zhao2019improved}.
+\begin{Figura}
+	\centering
+	\includegraphics[width=0.9\textwidth]{estructura.png}
+	\captionof{figure}{Estructura de la interacción del Agente dentro del entorno. }
+	\label{fig:2}
+\end{Figura}  
+\section{Resultados}
+\subsection{Esquema de planificación inicial basada en GA }
+ Se inicia con una planificación basada en GA programada en python del problema Mk03 que es un caso típico de programación de taller de trabajo flexible presentado por \cite{brandimarte1993routing} citado por \cite{zhao2019improved}. El parámetro de la población es de 50, el número de iteraciones es de 500, y las probabilidades transversal y de mutación son 0.8 y 0.2 respectivamente.
+
+A continuación se muestra el diagrama de Gantt del esquema de programación inicial
+en la figura 3. Y se presenta la curva de variación de la función de aptitud en la figura 4 \citep{zhao2019improved}.
+
+\begin{Figura}
+	\centering
+	\includegraphics[width=0.9\textwidth]{GA-grafica.png}
+	\captionof{figure}{Esquema inicial basado en GA.}
+	\label{fig:3}
+\end{Figura}  
+
+\begin{Figura}
+	\centering
+	\includegraphics[width=0.9\textwidth]{fitness-generation.png}
+	\captionof{figure}{La curva de variación de la función de aptitud.}
+	\label{fig:4}
+\end{Figura}  
+
+\subsection{Planificación con base en aprendizaje por refuerzo (Q-learning)}
+
+Se planea la obtención de distintos resultados variando cada una de las cuatro acciones que se tienen (SPT+M, EDD+M, FIFO+M y ninguna). Después de haber variado las acciones, se tiene contemplado el análisis simultáneo de las decisiones tomadas en cada acción. De acuerdo a los principios antes descritos de aprendizaje por refuerzo (Q-learning), si el agente obtiene una recompensa (reward) positiva el valor de $Q$ incrementa. Cuando el Agente selecciona su primer acción por ejemplo ninguna, el Agente archiva las recompensas positivas esto lo realiza de manera similar para las siguientes acciones. Teniendo los resultados en cada acción se evalúan los tiempos de las cuatro acciones, para concluir en un modelo de validación de nuestro algoritmo.
+
+\section{Conclusiones}
+Hasta el momento en que se escribe esta propuesta, la evidencia bibliográfica indica que el uso de un aprendizaje por refuerzo en un \fjsp \, tiene resultados muy favorables; sin embargo esta propuesta también planea explorar el tiempo computacional de dicho aprendizaje el cual ya se mencionó puede explotar en ciertas circunstancias.
+
+\end{multicols}
 
 
-\subsection*{\textit{International journal of production economics}}
 
-En este pdf se deja en claro que no se es muy estricto con el estilo de la bibliografía, sin embargo se pide que se utilice el DOI, ya que te explican que es una referencia que jamás cambiará, y de igual manera se pide que todas las citas esten en la bibliografía, en pocas palabras solo se pide que la bibliografía contenga lo siguiente:
-
-\begin{center}
-	Where applicable, author(s) name(s), journal title/
-book title, chapter title/article title, year of publication, volume number/book chapter and the article
-number or pagination must be present
-\end{center}
-
-Y se pide que los títulos no se abrevien.
-
-\subsection*{\textit{European Journal of Operational Research }}
-Esta es la más estricta de las que encontré, ya que en principio no se aceptan bibliografías que no esten en inglés, además se pide que la bibliografía se marque en orden alfabética y que se especifique que literatura no esta actualizada, y no se deben hacer citas en el abstract en caso de ser necesario sustituir por  'as discussed in the recent literature', además de que se pide que este en el formato explicado en el libro: the Publication Manual of the American Psychological Association, Seventh Edition, ISBN 978-1-4338-3215-4 y se da un link en donde conseguirlo.
-
-\section*{Contact}
-
-
-E-mail: \href{youremail@mail.com}{email} \newline
-Fax: 555-555-555-555\newline
-Phone 1:132-465-4659\newline
-Phone 2:132-486-49661 \newline
-Facebook: \href{https://www.facebook.com/}{my name in facebook}
-%puedes agrear el campo que desear utilizando href o ref
+\newpage
 % \cite{CHEN2022939}
-\cite{HUANG2022108353}
-\cite{QIU2022108362}
+
 % \cite{Elvesier.com}
 % \cite{Elvesier}
 % \cite{european}
-\newpage
-\bibliographystyle{plain}
+%\newpage
+%\bibliographystyle{plain}
+%\bibliography{bibliotarea1}
+\bibliographystyle{apalike-es}
 \bibliography{bibliotarea1}
-
 
 
 \end{document}

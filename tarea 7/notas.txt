@@ -1,0 +1,124 @@
+
+\newpage
+El diseño esta conformado de inicio, en la implementación de una búsqueda basada en Q-learning, se busca que los datos guardados en la tabla generada por nuestra búsqueda Q-learning sean procesados en una red neuronal y que por medio de esta misma se obtenga el aprendizaje, las instancias aplicadas pertenecen a  flexible job shop scheduling problem.
+
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale = 0.4]{diagrama q-learning.png}
+	\caption{Diagrama Q-learning.}
+	\label{figura2}
+\end{figure}
+
+En la figura \ref{figura2} podemos ver un diagrama general de aprendizaje Q-learning, el cual nos servirá (como su nombre lo dice) para el aprendizaje de nuestro agente.
+
+Se programará en python (versión actual 3.10) por la disponibilidad en las bibliotecas encontradas. Las especificaciones del equipo están pendientes, esto es importante ya que algunas instancias reportan las características del hardware utilizado.
+
+Aún estamos en la etapa de investigación, la cual solo ha tenido como resultados un par de artículos, los cuales tienen las respectivas referencias.
+
+Lo primero que estamos explorando es el uso de Q-learning, el cual solo hemos podido importar algunas librerías para el uso en problemas en 2-D, los cuales no son muy importantes para \fjsp, sin embargo seguimos en la etapa de exploración.
+
+Teniendo verificado el uso de lo antes mencionado, lo siguiente es verificar las instancias. 
+
+Lo siguiente es introducir múltiples instancias del problema clásico \fjsp, en el cual existen ya demasiados resultados con el objetivo  de ver que tanta calidad obtuvimos con respecto a los resultados presentados en la literatura.
+
+ 
+\section{Solución propuesta y Diseño de experimentos}
+La oportunidad de implementación de un algoritmo por aprendizaje automatizado, se presenta al momento de tener una cantidad constante de instancias a analizar, recordemos que una de las ventajas del aprendizaje automático es que se puede definir como un método general para \fjsp. El objetivo de nuestro experimento es poder analizar si es realmente factible utilizar un algoritmo de aprendizaje automatizado en paralelo o en reemplazo de un método metaheurístico.
+
+Las instancias se recolectan de los artículos presentados en la literatura, estas mismas se presentan de medidas variadas, es importante señalar que también se presentan de manera independiente. De cada instancia se tiene el mejor resultado obtenido por medio de un proceso metaheurístico, que se detalla en cada una de las instancias (no se profundiza en el método metaheurístico). Cada instancia se somete al algoritmo propuesto, de inicio se presentan resultados con un criterio de parada de n horas.
+
+El proceso no se tiene definido actualmente, aún se sigue trabajando en la ecuación para el aprendizaje por lo cual los detalles del proceso interno siguen en construcción.
+
+En el cuadro \ref{tabla1} se presentan los resultados de cada instancia:
+
+\begin{center}
+	\begin{table}[ht]
+		\centering
+		\begin{tabular}{|r|c|l|r|}
+		\hline
+		\multicolumn{1}{|l|}{\textbf{Instancia}}                   & \multicolumn{1}{l|}{\textit{\begin{tabular}[c]{@{}l@{}}Resultado \\ Metaheurística\end{tabular}}} & \multicolumn{1}{c|}{\textit{\begin{tabular}[c]{@{}c@{}}Resultado\\ Algoritmo\end{tabular}}} & \multicolumn{1}{c|}{\textit{Horas}}               \\ \hline
+		\textit{1}                                                 &                                                                                                   &                                                                                             & $n_1 $                                             \\ \hline
+		\textit{2}                                                 &                                                                                                   &                                                                                             & $n_2$                                              \\ \hline
+		\textit{\begin{tabular}[c]{@{}c@{}}.\\ .\\ .\end{tabular}} &                                                                                                   &                                                                                             & \begin{tabular}[c]{@{}l@{}}.\\ .\\ .\end{tabular} \\ \hline
+		\textit{m}                                                 &                                                                                                   &                                                                                             & $n_m$                                              \\ \hline
+		\end{tabular}
+		\caption{Resultados de los métodos metaheurísticos.}
+		\label{tabla1}
+		\end{table}
+	
+\end{center}
+\vspace{-1 cm}
+En la figura \ref{figura1}  se presentan los valores de manera discreta de los resultados en ambos métodos\footnote{Esta gráfica es solamente para ejemplificar la actual forma que se contempla de mostrar los datos obtenidos.}.
+
+\begin{figure*}[h!t]
+	\centering
+	\includegraphics[scale = 0.25]{ejemplo_grafica.png}
+	\caption{Ficticio.}
+	\label{figura1}
+\end{figure*}
+
+ \newpage En esta misma figura \ref{figura1} se presentan los análisis de aproximación de resultados, para ello se toman los valores tanto de métodos metaheurísticos como del algoritmo Q-learning.
+
+El análisis propuesto es el valor relativo, tomando como valor real el resultado obtenido por los métodos metaheurísticos.
+
+El siguiente factor a analizar es el tiempo asignado para cada una de las instancias en nuestro algoritmo, para ello se realiza una diferencia en valor absoluto entre las horas de nuestro algoritmo y el tiempo de ejecución de cada método metaheurístico, estos  últimos se presentan en el cuadro \ref{tabla2}.
+
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|c|c|}
+	\hline
+	\multicolumn{1}{|l|}{\textbf{Instancia}}                   & \multicolumn{1}{l|}{\textit{\begin{tabular}[c]{@{}l@{}}tiempo por\\ método metaheurístico\end{tabular}}} \\ \hline
+	\textit{1}                                                 &                                                                                                          \\ \hline
+	\textit{2}                                                 &                                                                                                          \\ \hline
+	\textit{\begin{tabular}[c]{@{}c@{}}.\\ .\\ .\end{tabular}} &                                                                                                          \\ \hline
+	\textit{m}                                                 &                                                                                                          \\ \hline
+	\end{tabular}
+	\caption{Resultados de tiempos.}
+	\label{tabla2}
+	\end{table}
+
+
+
+Ya que se presentaron los tiempos tomamos el menor de la diferencia, la instancia que representa esta diferencia es la que a continuación se vuelve  aproximar mediante nuestro método de Q-learning. 
+
+Una vez que tenemos el resultado de la instancia seleccionada se presenta a continuación los análisis sobre un próximo experimento.
+
+\begin{center}
+	Insertar resultados. \footnote{las conclusiones como la confirmación del experimento y próximos posibles experimentos dependen de los resultados obtenidos.}
+\end{center}
+
+\section{Mejoras}
+Aún sin tener resultados, una mejora a este experimento es asignar al algoritmo un mayor número de instancias, esto es debido a que entre más se utilice el algoritmo este mismo se vuelve más eficaz; algo que se conoce es el excesivo costo de tiempo en la ejecución de un algoritmo como el que estamos proponiendo, por lo cual sabemos que si el tiempo para obtener la solución es muy importante para nuestro problema no es factible para el algoritmo; sin embargo la posibilidad de que en un futuro cercano podamos solo insertar diferentes instancias para tener una solución de calidad similar a un método metaheurístico eficiente es la motivación a nuestro experimento.
+
+
+
+% \section{Methods}
+% The Method section is very important because it tells your Research Committee how
+% you plan to tackle your research problem. It will provide your work plan and describe
+% the activities necessary for the completion of your project.
+% You need to demonstrate your knowledge of alternative methods and make the case
+% that your approach is the most appropriate and most valid way to address your
+% research question. \newline
+% For quantitative studies, the method section typically consists of the following
+% sections:
+% \begin{enumerate}
+% 	\item Design.
+% 	\item Subjects or participants.
+% 	\item Instruments.
+% 	\item Procedure.
+% \end{enumerate}
+
+
+\section{Resultados}
+Esperamos tener resultados en los próximos tres meses \footnote{Somos conscientes que este tiempo puede variar.}, en dichos resultados obtenidos se utilizan métodos estadísticos para estimar la calidad de los factores antes mencionados.
+
+Los métodos estadísticos aún están en un estado experimental, esto debido a la falta de resultados. 
+\section{Discusión}
+La principal pregunta a discusión será: \\
+¿Los resultados obtenidos mejoran algún resultado presentado por métodos metaheurísticos? \\
+Sin embargo, antes ya se había mencionado que el tiempo es uno de los
+obstáculos más grandes que tenemos, y siguiendo con esta idea tenemos
+una pregunta más: \\
+¿En qué situaciones podemos encajar el aprendizaje continuo sin ser afectado por el costo alto de tiempo invertido? 
+
