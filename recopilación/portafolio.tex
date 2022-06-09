@@ -9,7 +9,20 @@
 \author{Arnoldo Del Toro Peña}
 \usepackage{pdfpages}
 \usepackage{hyperref}
+\usepackage{multirow}
 \begin{document}
+	\maketitle
+	Tabla de resultados:
+	% Please add the following required packages to your document preamble:
+	% \usepackage{multirow}
+	\begin{table}[h!]
+		\scalebox{0.8}{\begin{tabular}{|c|c|clllllllllllll|c|}
+				\hline
+				\multirow{2}{*}{\textbf{Programa}} & \multirow{2}{*}{\textbf{Alumno}} & \multicolumn{14}{c|}{\textbf{Fase}}                                                                                                                                                                                                                                                                                                                                                                                                                                                            & \multirow{2}{*}{\textbf{Total}} \\ \cline{3-16}
+				&                                  & \multicolumn{1}{c|}{\textbf{1}} & \multicolumn{1}{c|}{\textbf{2}} & \multicolumn{1}{c|}{\textbf{3}} & \multicolumn{1}{c|}{\textbf{4}} & \multicolumn{1}{c|}{\textbf{5}} & \multicolumn{1}{c|}{\textbf{6}} & \multicolumn{1}{c|}{\textbf{7}} & \multicolumn{1}{c|}{\textbf{8}} & \multicolumn{1}{c|}{\textbf{9}} & \multicolumn{1}{c|}{\textbf{10}} & \multicolumn{1}{c|}{\textbf{In}} & \multicolumn{1}{c|}{\textbf{Pr}} & \multicolumn{1}{c|}{\textbf{Re}} & \multicolumn{1}{c|}{\textbf{Au}} &                                 \\ \hline
+				\multicolumn{1}{|l|}{Maestría}     & \textbf{A}                       & \multicolumn{1}{l|}{5}          & \multicolumn{1}{l|}{5}          & \multicolumn{1}{l|}{3}          & \multicolumn{1}{l|}{5}          & \multicolumn{1}{l|}{3}          & \multicolumn{1}{l|}{5}          & \multicolumn{1}{l|}{4}          & \multicolumn{1}{l|}{4}          & \multicolumn{1}{l|}{5}          & \multicolumn{1}{l|}{4}           & \multicolumn{1}{l|}{16}          & \multicolumn{1}{l|}{8+9}         & \multicolumn{1}{l|}{2}           & 2                                & \multicolumn{1}{l|}{80}         \\ \hline
+		\end{tabular}}
+	\end{table}
 \section*{Tarea 1}
 Investiga los requerimientos de por lo menos cinco universidades extranjeras sobre el contenido y la estructura de un anteproyecto (research proposal); incluye citas claras a tus fuentes. Acorde a tus hallazgos, prepara un esqueleto de estructura para tu propio anteproyecto.
 \includepdf[pages=-]{tarea1.pdf}
